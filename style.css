@@ -1,0 +1,563 @@
+/* Genel Ayarlar */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Sayfa Arkaplanı */
+body {
+    background-image: url("paper-68833_1280.jpg"); /* Arka plan resmini tüm sayfalara uygula */
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed; 
+    color: rgb(250, 2, 2);
+    font-family: Arial, sans-serif;
+    min-height: 0vh; /* Sayfa içeriği kadar yükseklik */
+}
+
+/* Animasyonlar */
+@keyframes logo-move {
+    0% { transform: translateX(0); }
+    50% { transform: translateX(20px); }
+    100% { transform: translateX(0); }
+}
+
+@keyframes site-name-move {
+    0% { transform: translateX(0); }
+    50% { transform: translateX(20px); }
+    100% { transform: translateX(0); }
+}
+
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+}
+
+.shake-on-hover:hover {
+    animation: shake 0.5s ease-in-out;
+}
+
+/* Navbar kısmı */
+header {
+    background-color:rgba(0, 0, 0, 0.6);
+    padding: 12px 0;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Logoların sol ve sağ kenarlarda görünmesini sağla */
+.logo-container-left,
+.logo-container-right {
+    position: absolute;
+    top: 84%; /* Bu değeri artırarak logoları daha aşağıya kaydırabilirsiniz */
+    transform: translateY(-50%);
+    z-index: 10;
+}
+
+.logo-container-left {
+    left: 10px;
+}
+
+.logo-container-right {
+    right: 10px;
+}
+
+/* Logo stilini düzenle */
+.logo {
+    width: 50px;
+    height: 50px;
+    transition: transform 0.2s ease;
+}
+
+/* Navbar içindeki logo (site adıyla birlikte ortalanmış) */
+.logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+#logo {
+    width: 60px;
+    height: 60px;
+}
+
+#site-name {
+    font-size: 24px;
+    color: white;
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+/* Navbar bağlantılarını stilize et */
+.nav-links {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+/* Navbar linklerinin stilleri */
+.nav-links li {
+    margin-right: 30px;
+}
+
+/* Navbar metni etrafında dikdörtgen */
+.nav-item {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 18px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.nav-item::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: rgb(255, 0, 0);
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+
+.nav-item:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+/* Animasyonla yukarı-aşağı hareket efekti */
+@keyframes logoMove {
+    0% {
+        transform: translateY(-50%) translateY(-10px);
+    }
+    50% {
+        transform: translateY(-50%) translateY(10px);
+    }
+    100% {
+        transform: translateY(-50%) translateY(-10px);
+    }
+}
+
+/* Sol ve sağdaki logolara animasyon ekle */
+.logo-container-left .logo,
+.logo-container-right .logo {
+    animation: logoMove 1.5s ease-in-out infinite;
+}
+
+/* Navbar bağlantıları üzerine gelindiğinde animasyonu başlat */
+.nav-item:hover {
+    color: #ff0000; /* Renk değişimi */
+}
+
+
+
+/* Ana Sayfa */
+.welcome {
+    text-align: center;
+    margin-top: 100px;
+}
+
+#welcome-text {
+    font-size: 48px;
+}
+
+#profile-img {
+    border-radius: 50%;
+    width: 200px;
+    margin-top: 20px;
+}
+
+/* Hakkımda */
+#about {
+    text-align: center;
+    padding: 50px;
+}
+
+/* Projelerim bölümünü stilize etme */
+.projects-list {
+    display: flex;            /* Flexbox kullanımı */
+    justify-content: center;  /* Elemanları yatayda ortala */
+    align-items: center;      /* Elemanları dikeyde ortala */
+    gap: 200px;                /* Elemanlar arasındaki boşluğu ayarla */
+    flex-wrap: wrap;          /* Ekran küçüldükçe elemanları alt satıra al */
+    padding: 5px;            /* Yastık boşluğu */
+}
+
+.project-item {
+    background-color: rgba(0, 0, 0, 0.4); /* Arka plan rengi */
+    padding: 20px;              /* İç boşluk */
+    border-radius: 10px;        /* Köşe yuvarlama */
+    width: 350px;               /* Sabit genişlik */
+    height: 400px;              /* Sabit yükseklik */
+    text-align: center;         /* Yazıları ortala */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Hafif gölge */
+    display: flex;              /* Flexbox kullanarak içeriği hizalamak */
+    flex-direction: column;     /* İçeriği dikey sıraya koy */
+    justify-content: space-between; /* İçeriği dikeyde yerleştir */
+}
+
+.project-item img {
+    width: 100%;         /* Görsellerin genişliğini %100 yap */
+    height: auto;        /* Görsellerin yüksekliğini otomatik yap */
+    border-radius: 8px;  /* Görsellere yuvarlak köşe ekle */
+    margin-bottom: 15px; /* Görsel ile yazılar arasında boşluk */
+    max-height: 200px;   /* Görselin maksimum yüksekliğini sınırlayarak boyutları dengele */
+}
+
+/* Proje başlıkları ve açıklama stilleri */
+.project-item h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.project-item p {
+    font-size: 1rem;
+    margin-bottom: 15px;
+}
+/* Projelerim başlığını ortalamak için stil */
+#projects h1 {
+    text-align: center;      /* Başlığı yatayda ortala */
+    font-size: 2.5rem;       /* Başlık font büyüklüğü */
+    margin-bottom: 30px;     /* Başlık ile içeriği arasına boşluk */
+    display: flex;           /* Flexbox kullanarak ortalamak */
+    justify-content: center; /* Yatayda ortalama */
+    align-items: center;     /* Dikeyde ortalama */
+    height: 100px;           /* Başlık kutusunun yüksekliğini ayarla (isteğe bağlı) */
+}
+
+
+.project-item a {
+    font-size: 1rem;
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: bold;
+}
+.project-item a:hover {
+    color: #ff0000;
+}
+.project-item a {
+    font-size: 1rem;
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: bold;
+    padding: 10px 20px;  /* Butonun içine boşluk ekleyelim */
+    border: 2px solid #db3434;  /* Butonun etrafına çerçeve ekleyelim */
+    border-radius: 5px;  /* Köşeleri yuvarlatmak için */
+    position: relative;  /* Pseudo-element için pozisyonlama */
+    display: inline-block; /* Navbar gibi yerleşim */
+    transition: all 0.3s ease;  /* Hover ve animasyon için geçiş efekti */
+}
+
+.project-item a::before {
+    content: "";  /* İçerik eklemiyoruz */
+    position: absolute;
+    top: -10px;    /* Üstten biraz uzak */
+    left: -10px;   /* Soldan biraz uzak */
+    right: -10px;  /* Sağdan biraz uzak */
+    bottom: -10px; /* Alttan biraz uzak */
+    background-color: rgba(0, 0, 0, 0.6);  /* Arka plan rengi (hafif opak) */
+    border-radius: 8px; /* Köşeleri yuvarlatmak için */
+    z-index: -1;  /* Butonun arkasında yer alacak */
+    transition: all 0.3s ease;  /* Geçiş efekti */
+}
+
+.project-item a:hover::before {
+    background-color: rgba(0, 0, 0, 0.9);  /* Hover durumunda koyulaşacak */
+}
+
+.project-item a:hover {
+    color: #ff0000; /* Buton üzerine gelindiğinde renk değişimi */
+}
+
+
+
+/* Genel sayfa stilini temizleyelim */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+#logo {
+    height: 50px;
+    margin-right: 10px;
+}
+
+#site-name {
+    font-size: 24px;
+    font-weight: bold;
+    color: rgb(247, 5, 5);
+}
+
+.welcome-section {
+    padding: 50px 0;
+    text-align: center;
+    margin-top: 80px;
+}
+
+#about h1 {
+    font-size: 36px;
+    color: rgb(255, 0, 0); /* Kırmızı renk */
+}
+
+.profile-img-container {
+    width: 30%;
+    margin-right: 20px;
+}
+
+.profile-img {
+    width: 100%;
+    border-radius: 50%;
+}
+
+#hobbies {
+    font-size: 28px;
+    font-weight: bold;
+    text-align: left;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    color: rgb(255, 0, 0);
+}
+
+.hobby img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.hobby p {
+    font-size: 20px;
+    margin: 0;
+    text-align: center;
+}
+
+footer {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 50px;
+    font-size: 16px;
+}
+p{
+    color: black;
+    font-size: 20px;
+}
+
+/* Hobilerim başlığını ortalamak için stil */
+#hobbies {
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;  /* Yatayda ortalama */
+    margin-top: 30px;
+    margin-bottom: 20px;
+    color: rgb(255, 0, 0);  /* Renk kırmızı */
+}
+
+/* Hobiler bölümünü tam ortalamak için */
+#hobbies-section {
+    display: flex;
+    justify-content: center;  /* Yatayda ortalama */
+    align-items: center;  /* Dikeyde ortalama */
+    height: 100vh;  /* Sayfanın tamamını kaplama */
+    text-align: center;  /* İçeriği yatayda ortalama */
+}
+/* Logo ve Site Adı için Flexbox düzeni */
+.logo-container {
+    display: flex;                /* Flexbox kullanımı */
+    align-items: center;          /* Dikeyde ortalama */
+    justify-content: center;      /* Yatayda ortalama */
+    gap: 10px;                    /* Logo ile site adı arasına boşluk ekleyelim */
+}
+
+/* Logo */
+#logo {
+    width: 50px;                  /* Logo genişliğini ayarlayabilirsiniz */
+    height: auto;                 /* Yükseklik orantılı olsun */
+}
+
+/* Site Adı */
+#site-name {
+    font-size: 24px;              /* Site adı yazı boyutu */
+    font-weight: bold;            /* Site adı yazısını kalın yapalım */
+    color: #ff0000;                  /* Yazı rengi */
+}
+/* Logo ve Site Adı için Flexbox düzeni */
+.logo-container {
+    display: flex;                /* Flexbox kullanımı */
+    align-items: center;          /* Dikeyde ortalama */
+    justify-content: center;      /* Yatayda ortalama */
+    gap: 10px;                    /* Logo ile site adı arasına boşluk ekleyelim */
+    animation: moveSideToSide 4s ease-in-out infinite; /* Animasyon ekledik */
+}
+
+/* Logo */
+#logo {
+    width: 50px;                  /* Logo genişliğini ayarlayabilirsiniz */
+    height: auto;                 /* Yükseklik orantılı olsun */
+}
+
+/* Site Adı */
+#site-name {
+    font-size: 24px;              /* Site adı yazı boyutu */
+    font-weight: bold;            /* Site adı yazısını kalın yapalım */
+    color: #ff0000;                  /* Yazı rengi */
+}
+
+/* Animasyon */
+@keyframes moveSideToSide {
+    0% { transform: translateX(0); }          /* Başlangıçta normal konum */
+    25% { transform: translateX(20px); }      /* 25%'te sağa kayma */
+    50% { transform: translateX(0); }         /* 50%'de tekrar başlangıç noktasına dönme */
+    75% { transform: translateX(-20px); }     /* 75%'te sola kayma */
+    100% { transform: translateX(0); }        /* 100%'de tekrar başlangıç noktasına dönme */
+}
+/* Tüm fotoğraflar için stil */
+img {
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Geçiş efekti */
+}
+
+/* Fotoğrafa imleç geldiğinde büyütme ve gölge efekti */
+img:hover {
+    transform: scale(1.3); /* Fotoğrafı %10 büyüt */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Hafif gölge efekti */
+}
+/* İletişim Bölümü */
+.contact-section {
+    padding: 80px;
+    background-color: rgba(0, 0, 0, 0.7); /* Koyu bir arka plan */
+    color: white;  /* Yazı rengi beyaz */
+    text-align: center;
+}
+
+#contact {
+    font-size: 40px;
+    color: rgb(255, 0, 0);
+    margin-bottom: 20px;
+}
+
+/* Form */
+.contact-section form {
+    max-width: 400px;
+    margin:  auto;  /* Ortalayalım */
+    background-color: rgba(255, 255, 255, 0.2);  /* Hafif şeffaf dikdörtgen arka plan */
+    padding: 30px;
+    border-radius: 10px; /* Köşeleri yuvarlaklaştır */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Hafif gölge */
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: auto;  /* Etiketler sola hizalanacak */
+}
+
+.form-group label {
+    font-size: 18px;
+    color: rgb(255, 255, 255);
+    display: block;
+    margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 3px solid #fff;
+    border-radius: 15px;
+    background-color: rgba(0, 0, 0, 0.5); /* Input alanının arka planı */
+    color: white;  /* Yazı rengi beyaz */
+}
+
+.form-group textarea {
+    resize: vertical;  /* Textarea'nın boyutlandırılabilir olması */
+}
+
+.submit-btn {
+    background-color: rgb(14, 13, 13);
+    color: rgb(255, 255, 255);
+    padding: 10px 50px;
+    font-size: 18px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.submit-btn:hover {
+    background-color: rgb(255, 0, 0);  /* Hover efekti */
+}
+/* Footer düzenlemesi */
+.footer {
+    background-color:rgba(0, 0, 0, 0.6);       /* Arka plan rengi */
+    color: white;                 /* Yazı rengi */
+    text-align: center;           /* Yazıyı ortalar */
+    padding: 10px 0;              /* Yataydaki boşlukları ayarlar */
+    position: relative;           /* Footer'ın konumunu ayarlar */
+    bottom: 0;                    /* Sayfanın alt kısmına sabitler */
+    width: 100%;                  /* Footer'ın tam genişlikte olmasını sağlar */
+}
+
+/* Footer içeriği */
+.footer-content {
+    font-size: 16px;              /* Yazı boyutunu ayarlar */
+}
+.submit-btn {
+    background-color: rgb(14, 13, 13);
+    color: rgb(255, 255, 255);
+    padding: 10px 50px;
+    font-size: 18px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;  /* Büyüme ve gölge geçişi */
+}
+
+.submit-btn:hover {
+    transform: scale(1.1); /* Buton üzerine gelindiğinde %10 büyüme efekti */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Hafif gölge efekti */
+}
+/* Navbar başlıklarının etrafında küçük dikdörtgen çerçeve */
+.nav-links li {
+    position: relative; /* Çerçeveyi başlıklarla hizalamak için */
+    display: inline-block; /* Başlıkları içeren dikdörtgenin boyutunun başlığa göre ayarlanmasını sağlar */
+    padding: 5px 25px; /* Başlık etrafında boşluk bırakır */
+}
+
+.nav-links li::before {
+    content: ""; /* Pseudo-elementin içeriği boş olacak */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 4px solid rgb(255, 0, 0); /* Kırmızı renkli çerçeve */
+    border-radius: 50px; /* Yuvarlatılmış köşeler */
+    opacity: 0; /* Başlangıçta görünmez */
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Animasyon geçişleri */
+}
+
+.nav-links li:hover::before {
+    opacity: 1; /* Hover durumunda çerçeve görünür */
+    transform: scale(1.1); /* Hover durumunda çerçeve biraz büyür */
+}
+
+/* Navbar bağlantıları üzerine gelindiğinde animasyonu başlat */
+.nav-item:hover {
+    color: #ff0000; /* Renk değişimi */
+}
